@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Voice Identification</h1>
+        </div>
+        <div class="controls">
+    <button class=btn onclick="showNameForm();">Create Profile</button>
+    <button class=btn  onclick="startListeningForIdentification();">Identify</button>
+    </div>
+
+    <div class="form-container hidden" id="namefc">
+        <form id="nameForm hidden"  onsubmit="return ValidateForm()">
+              <label for="name">Enter a name:</label>
+              <input type="text" id="name" name="name" placeholder="Enter Name" required>
+              <div class="form-buttons">
+              <button class=btn value="reset" onclick="resform()">Reset</button>
+              <button class=btn type="submit" id="submitBtn" onclick="enrollNewProfile(event);" disabled>Submit</button>
+            </div>
+           </form>
+        </div>
+    
+
+
+    <div id="logDiv"> 
+
+
+<script src="src/speaker-recognition-api-demo-core.js"></script>
+ <script src="src/speaker-recognition-api-demo-verification-textdependent.js"></script>
+<script src="src/speaker-recognition-api-demo-verification-textindependent.js"></script> 
+<script src="src/identification.js"></script>
+<script src="src/recorder-cognitiveservices-rposbo.js"></script>
+</div>
+
+
+
+<script>
+var recorder;
+var audio_context;
+
+function onMediaSuccess(stream, callback, secondsOfAudio) {
+    audio_context = audio_context || new window.AudioContext;
+    var input = audio_context.createMediaStreamSource(stream);
+    recorder = new Recorder(input);
+    recorder.record();
+    
+	setTimeout(() => { StopListening(callback); }, secondsOfAudio*1000);
+}
+
+function onMediaError(e) {
+    console.error('media error', e);
+}
+
+function StopListening(callback){
+	console.log('....RECORDED....');
+    recorder && recorder.stop();
+    recorder.exportWAV(function(blob) {
+        callback(blob);
+    });
+    recorder.clear();
+}
+
+function showNameForm() {
+  const namefc = document.getElementById('namefc');
+  namefc.classList.toggle('hidden'); // Make the form visible
+}
+
+function resform(){
+    document.getElementById("nameForm").reset();   
+}
+function validateForm() {
+    let name = document.getElementById("name").value;
+    if (name == "") {
+        alert("Please enter a name");
+        return false;
+    }
+    // Your form submission logic here
+    return true;
+}
+const submitBtn = document.getElementById('submitBtn');
+submitBtn.disabled = true;
+
+// Enable submit button when name field is not empty
+const nameInput = document.getElementById('name');
+nameInput.addEventListener('input', () => {
+    submitBtn.disabled = nameInput.value === '';
+});
+</script>
+ </body>
+</html>
