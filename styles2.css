@@ -1,0 +1,76 @@
+/* Reset some default styles */
+body, h1, p, button {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Set a basic font and dark background color for the entire page */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #0f0f0f; /* Very dark background */
+    color: #e0e0e0; /* Light text color */
+  }
+  
+  /* Center content and provide some padding */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Style for the hero section */
+  .hero {
+    background: linear-gradient(to right, #6a11cb, #2575fc);    color: #e0e0e0;
+    padding: 50px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  /* Style for the heading */
+  .hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the paragraph text */
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the start button */
+  .start-button {
+    background-color: #333333; /* Dark button background */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .start-button:hover {
+    background-color: #444444; /* Slightly lighter button background on hover */
+  }
+  
+  /* Style for log messages */
+  .log-messages {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #1a1a1a; /* Dark background for messages */
+    border: 1px solid #333333; /* Dark border */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    max-width: 600px;
+    width: 100%;
+    font-size: 1em;
+    color: #e0e0e0; /* Light text color */
+  }
+  
